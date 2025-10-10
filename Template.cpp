@@ -5,7 +5,7 @@ template <class T>
 class Arithmetic
 {
 private:
-    T a, b; // T means it can take any data type and thats called generic datatype.
+    T a, b; // T means it can take any data type and thats called generic datatype
 public:
     Arithmetic(T a, T b);
     T add();
