@@ -1,0 +1,26 @@
+Feature	               Bubble Sort	             |   Selection Sort	                         |        Insertion Sort
+Basic Idea	    Repeatedly swap adjacent         |   Repeatedly select the smallest          |Insert each element into its correct 
+        elements if they are in the wrong order	 |	element and place it in correct position |   position in the sorted part
+
+Worst Time Complexity	    O(n²)	                            O(n²)	                                    O(n²)
+Average Time Complexity	    O(n²)	                            O(n²)	                                    O(n²)
+Best Time Complexity	O(n) (optimized)	                    O(n²)	                        O(n) (when array already sorted)
+Memory (Space Complexity)	O(1)	                            O(1)	                                    O(1)
+Stability	                ✔️ Stable	                        ❌ Not stable	                          ✔️ Stable
+Number of Swaps	   Very High (swap every time elements are out of order)	Very Low (max n swaps)	        Medium
+Number of Comparisons	    High	                            High (always n²)	               Less (when partly sorted)
+Adaptive? (faster when nearly sorted)	✔️ Yes	                ❌ No	                                    ✔️ Yes
+Best Use Case	Very small inputs, teaching beginners	Small inputs, fewer swaps needed	Nearly sorted data, small datasets
+Real-Life Usage	        ❌ Rarely used	                    ❌ Rarely used	                ✔️ Used inside advanced sorts (like TimSort)
+Method Type	            Exchange-based	                    Selection-based	                            Insertion-based
+Sorting Direction	Moves largest to end in each pass	Places smallest at start in each pass	Builds sorted list from left to right
+
+
+
+🎯 Final Explanation (Very Short)
+
+Bubble Sort: Swap adjacent elements repeatedly → slowest.
+
+Selection Sort: Select smallest and place it → fewer swaps.
+
+Insertion Sort: Insert each element in the correct position → fastest for nearly sorted data.

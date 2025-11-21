@@ -19,6 +19,5 @@ int main()
     cout << "Enter Length:" && cin >> r.length; // we can take input and output in same line using &&
 
     cout << "Enter Breadth:" && cin >> r.breadth;
-
-    cout << "Area:" << area(&r) << " Perimeter:" << peri(&r) << endl;
+    
 }
