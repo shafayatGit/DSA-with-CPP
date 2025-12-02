@@ -3,7 +3,7 @@ using namespace std;
 
 int main()
 {
-    int arr[] = {4, 6, 2, 1, 5, 9};
+    int arr[] = {4, 9, 2, 1, 5, 6};
     int j, k;
     for (int i = 0; i < 6 - 1; i++)
     {
