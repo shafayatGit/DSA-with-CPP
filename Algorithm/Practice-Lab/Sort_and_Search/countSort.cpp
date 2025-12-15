@@ -29,7 +29,7 @@ void countSort(int arr[], int n)
         count[arr[i]]++;
     }
 
-    //? Step 4: Count array er upor loop chalabo max+1 porjonto and jodi count array er value 0 theke beshi hoy tahole main array er value te count array index boshabo(arr[i++]=j) and count array er value 1 komabo(count[j]--).. Or jodi 0 theke choto hoy amra shamne agabo (j++).
+    //? Step 4: Count array er upor loop chalabo max+1 porjonto and jodi count array er value 0 theke beshi hoy tahole main array er value te count array index boshabo(arr[i++]=j) and count array er value 1 komabo(count[j]--).. Or jodi 0 theke choto hoy amra shamne agabo (j++)
 
     int i = 0;
     int j = 0;
@@ -37,7 +37,7 @@ void countSort(int arr[], int n)
     {
         if (count[j] > 0)
         {
-            arr[i++] = j;
+            arr[i++] = j; //ekhane i er post increment hocche
             count[j]--;
         }
         else
