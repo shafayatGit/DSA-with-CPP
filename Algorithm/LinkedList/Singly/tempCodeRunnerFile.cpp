@@ -1,3 +1,3 @@
-first = new Node{10, nullptr};
-    // first->next = new Node{20, nullptr};
-    // first->next->next = new Node{30, nullptr};
+    // Insert(first, 1, 'B');
+    // Insert(first, 2, 'D');
+    // Insert(first, 3, 'C');
