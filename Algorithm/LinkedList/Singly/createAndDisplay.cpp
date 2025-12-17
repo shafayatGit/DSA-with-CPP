@@ -58,6 +58,33 @@ struct Node *Search(struct Node *p, int key)
     return NULL;
 }
 
+// deleting
+int Delete(struct Node *p, int index)
+{
+    struct Node *q;
+    int x = -1;
+    if (index == 1)
+    {
+        q = first;
+        x = first->data;
+        first = first->next;
+        delete q;
+        return x;
+    }
+    else
+    {
+        for (int i = 0; i < index - 1; i++)
+        {
+            q = p;
+            p = p->next;
+        }
+        q->next = p->next;
+        x = p->data;
+        delete p;
+        return x;
+    }
+}
+
 int main()
 {
     int A[] = {3, 5, 7, 9};
@@ -67,7 +94,7 @@ int main()
     //  first = new Node{10, nullptr};
     //  first->next = new Node{20, nullptr};
     //  first->next->next = new Node{30, nullptr};
-
+    Delete (first, 2);
     display(first);
     int sum = add(first);
     struct Node *keyFound = Search(first, 9);
