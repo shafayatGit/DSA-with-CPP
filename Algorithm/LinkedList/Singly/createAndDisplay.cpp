@@ -30,7 +30,11 @@ void display(struct Node *p)
 {
     while (p != NULL)
     {
-        cout << p->data << " ";
+        if (p->data % 2 == 1)
+        {
+            cout << p->data << " ";
+        }
+
         p = p->next;
     }
 }
@@ -85,19 +89,29 @@ int Delete(struct Node *p, int index)
     }
 }
 
+// int Count(struct Node *p)
+// {
+//     if (p == 0)
+//         return 0;
+//     else
+//     {
+//         Count(p->next) + 1;
+//     }
+// }
+
 int main()
 {
-    int A[] = {3, 5, 7, 9};
-    create(A, 4);
+    int A[] = {3, 2, 7, 9, 12, 17};
+    create(A, 6);
 
     // we can also create like this
     //  first = new Node{10, nullptr};
     //  first->next = new Node{20, nullptr};
     //  first->next->next = new Node{30, nullptr};
-    Delete (first, 2);
+    // Delete (first, 2);
     display(first);
-    int sum = add(first);
-    struct Node *keyFound = Search(first, 9);
-    cout << "Key Found: " << keyFound->data << endl;
-    cout << "Sum: " << sum;
+    // int sum = add(first);
+    // struct Node *keyFound = Search(first, 9);
+    // cout << "Key Found: " << keyFound->data << endl;
+    // cout << "Sum: " << sum;
 }
