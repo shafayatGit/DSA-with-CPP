@@ -1,3 +1,6 @@
-    // Insert(first, 1, 'B');
-    // Insert(first, 2, 'D');
-    // Insert(first, 3, 'C');
+ruct Node
+// {
+//     string name;
+//     int id;
+//     struct Node *next;
+// } *first = NULL;

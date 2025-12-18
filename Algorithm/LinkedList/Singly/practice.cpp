@@ -1,27 +1,60 @@
 #include <iostream>
 using namespace std;
 
+class Student
+{
+public:
+    string name;
+    int id;
+
+    Student(string n, int id)
+    {
+        name = name;
+        id = id;
+    }
+};
+
 struct Node
 {
-    char data;
+    string name;
+    int id;
     struct Node *next;
 } *first = NULL;
 
+void create(int A[], int n)
+{
+
+    struct Node *t, *last;
+    first = (struct Node *)malloc(sizeof(struct Node)); // Or first = new Node;-> creating a new node
+    first->data = A[0];
+    first->next = NULL;
+    last = first;
+
+    for (int i = 1; i < n; i++)
+    {
+        t = new Node;
+        t->data = A[i];
+        t->next = NULL;
+        last->next = t;
+        last = t;
+    }
+}
 void Display(struct Node *p)
 {
     while (p != NULL)
     {
-        cout << p->data << " ";
+        cout << p->name << "," << " ID: " << p->id << endl;
         p = p->next;
     }
     cout << endl;
 }
 
 // Insert
-void Insert(struct Node *p, int index, char x)
+void Insert(struct Node *p, int index, string name, int id)
 {
     struct Node *t = new Node;
-    t->data = x;
+    t->name = name;
+    t->id = id;
     t->next = NULL;
 
     if (index == 0)
@@ -49,9 +82,9 @@ int Delete(struct Node *p, int index)
     {
         q = first;
         first = first->next;
-        x = q->data;
+        // x = q->data;
         delete q;
-        return x;
+        // return x;
     }
     else
     {
@@ -61,9 +94,9 @@ int Delete(struct Node *p, int index)
             p = p->next;
         }
         q->next = p->next;
-        x = p->data;
+        // x = p->data;
         delete p;
-        return x;
+        // return x;
     }
 }
 
@@ -81,12 +114,19 @@ int Count(struct Node *p)
 int main()
 {
     // in the insertion i have to maintain the index serialization or it will be exceed the index
-    Insert(first, 0, 'A');
-    Insert(first, 1, 'C');
-    Insert(first, 2, 'D');
-    Insert(first, 3, 'D');
-    Insert(first, 0, 'Z');
-    Insert(first, Count(first), 'L');
-    Delete(first, 1);
-    Display(first);
+    // Insert(first, 0, 'A');
+    // Insert(first, 1, 'C');
+    // Insert(first, 2, 'D');
+    // Insert(first, 3, 'D');
+    // Insert(first, 0, 'Z');
+    // Insert(first, Count(first), 'L');
+    // Delete(first, 1);
+    // Student arr[2] = {{"Shafayat",101},{"Hossain",102}};
+
+    // for(int i = 0; i < 2; i++)
+    //     cout << arr[i].name << "," << arr[i].id << endl;
+
+    // Insert(first, 0, "Shafayat", 101);
+    // Insert(first, 1, "Hossain", 102);
+    // Display(first);
 }

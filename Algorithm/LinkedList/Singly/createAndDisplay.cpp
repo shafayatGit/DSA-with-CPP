@@ -3,7 +3,8 @@ using namespace std;
 
 struct Node
 {
-    int data;
+    string name;
+    int id;
     struct Node *next;
 } *first;
 
@@ -23,6 +24,27 @@ void create(int A[], int n)
         t->next = NULL;
         last->next = t;
         last = t;
+    }
+}
+
+void Insert(struct Node *p, int index, int x)
+{
+    struct Node *t = new Node;
+    t->data = x;
+    t->next = NULL;
+
+    if (index == 0)
+    {
+        t->next = first;
+        first = t;
+    }
+    else
+    {
+        for (int i = 0; i < index - 1 && p != NULL; i++)
+            p = p->next;
+
+        p->next = t->next;
+        p->next = t;
     }
 }
 
