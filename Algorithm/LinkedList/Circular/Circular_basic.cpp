@@ -35,9 +35,9 @@ void Display(struct Node *p)
     } while (p != head);
 }
 
-void Insert(int pos, int x)
+void Insert(struct Node *p, int pos, int x)
 {
-    struct Node *p, *t;
+    struct Node *t;
     t = new Node;
     t->data = x;
     if (pos == 0)
@@ -49,8 +49,8 @@ void Insert(int pos, int x)
         }
         else
         {
-            p = head;
-            while (p != head)
+
+            while (p->next != head)
             {
                 p = p->next;
             }
@@ -61,7 +61,7 @@ void Insert(int pos, int x)
     }
     else
     {
-        p = head;
+
         for (int i = 0; i < pos - 1; i++)
         {
             p = p->next;
@@ -71,11 +71,40 @@ void Insert(int pos, int x)
     }
 }
 
+void Delete(struct Node *p, int index)
+{
+    struct Node *t;
+
+    if (index == 1)
+    {
+        while (p->next != head)
+        {
+            p = p->next;
+        }
+        p->next = head->next;
+        delete head;
+        head = p->next;
+    }
+    else
+    {
+        for (int i = 0; i < index - 1; i++)
+        {
+            t = p;
+            p = p->next;
+        }
+        t->next = p->next;
+        delete p;
+    }
+}
 int main()
 {
     // int arr[] = {10, 20, 30, 4};
     // Create(arr, 4);
-    Insert(0,3);
-    Insert(1,5);
+    Insert(head, 0, 3);
+    Insert(head, 1, 5);
+    Insert(head, 0, 9);
+    Insert(head, 0, 10);
+    // Delete(head,3);
+    Delete(head,1);
     Display(head);
 }
