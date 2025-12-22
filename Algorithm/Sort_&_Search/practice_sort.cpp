@@ -96,13 +96,20 @@ void Insertion_Descending_Sort(int arr[], int size)
 void Count_Ascending_Sort(int arr[], int size)
 {
     int max = arr[0];
+    int min = arr[0];
     for (int i = 1; i < size; i++)
     {
         if (max < arr[i])
         {
             max = arr[i];
         }
+        if (max > arr[i])
+        {
+            min = arr[i];
+        }
     }
+
+    int diff = max - min;
 
     int *count;
     count = new int[max + 1];
@@ -154,7 +161,7 @@ void Count_Descending_Sort(int arr[], int size)
     {
         count[arr[i]]++;
     }
-    int i= 0, j = max ;
+    int i = 0, j = max;
     while (j >= 0)
     {
         if (count[j] > 0)
@@ -170,7 +177,7 @@ void Count_Descending_Sort(int arr[], int size)
 }
 int main()
 { //[10,7]
-    int arr[] = {10, 7, 3, 12, 11};
+    int arr[] = {-10, 7, -3, 12, -11};
     int size = sizeof(arr) / sizeof(arr[0]);
 
     // Bubble_Ascending_Sort(arr, size);
@@ -182,7 +189,7 @@ int main()
     // Insertion_Ascending_Sort(arr, size);
     // Insertion_Descending_Sort(arr, size);
 
-    // Count_Ascending_Sort(arr,size);
+    Count_Ascending_Sort(arr, size);
     // Count_Descending_Sort(arr, size);
     for (int i = 0; i < size; i++)
     {

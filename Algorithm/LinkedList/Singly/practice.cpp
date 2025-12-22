@@ -103,12 +103,13 @@ int Delete(struct Node *p, int index)
 // Count
 int Count(struct Node *p)
 {
-    if (p == 0)
-        return 0;
-    else
+    int l = 0;
+    while (p)
     {
-        return Count(p->next) + 1;
+        l++;
+        p = p->next;
     }
+    return l;
 }
 
 int main()

@@ -111,26 +111,30 @@ int Delete(struct Node *p, int index)
     }
 }
 
-// int Count(struct Node *p)
-// {
-//     if (p == 0)
-//         return 0;
-//     else
-//     {
-//         Count(p->next) + 1;
-//     }
-// }
+int Count(struct Node *p)
+{
+    int l = 0;
+    while (p)
+    {
+        l++;
+        p = p->next;
+    }
+    return l;
+}
 
 int main()
 {
     int A[] = {3, 2, 7, 9, 12, 17};
-    create(A, 6);
+    // create(A, 6);
 
     // we can also create like this
     //  first = new Node{10, nullptr};
     //  first->next = new Node{20, nullptr};
     //  first->next->next = new Node{30, nullptr};
     // Delete (first, 2);
+    Insert(first,0,2);
+    Insert(first,1,3);
+    Insert(first,2,4);
     display(first);
     // int sum = add(first);
     // struct Node *keyFound = Search(first, 9);

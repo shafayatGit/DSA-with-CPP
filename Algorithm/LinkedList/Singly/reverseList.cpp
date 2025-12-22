@@ -36,7 +36,16 @@ void Insert(struct Node *p, int index, int x)
         p->next = t;
     }
 }
-
+int Count(struct Node *p)
+{
+    int l = 0;
+    while (p)
+    {
+        l++;
+        p = p->next;
+    }
+    return l;
+}
 void ReverseLinks(struct Node *p)
 {
     struct Node *q = NULL;
