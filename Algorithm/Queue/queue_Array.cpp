@@ -18,7 +18,7 @@ void enqueue(int data)
         int dummy_r = (rear + 1) % 4;
         if (dummy_r == front)
         {
-            cout << "Queue Overflow";
+            cout << "Queue Overflow" << endl;
         }
         else
         {
@@ -32,17 +32,17 @@ void dequeue()
 {
     if (front == -1)
     {
-        cout << "queue underflow";
+        cout << "queue underflow" << endl;
     }
     else if (front == rear)
     {
-        cout << "Deleted: " << Queue[front];
+        cout << "Deleted: " << Queue[front] << endl;
         Queue[front] = 0;
         front = rear = -1;
     }
     else
     {
-        cout << "Deleted:" << Queue[front];
+        cout << "Deleted:" << Queue[front] << endl;
         Queue[front] = 0;
         front = (front + 1) % 4;
     }
@@ -55,4 +55,10 @@ int main()
     enqueue(30);
     dequeue();
     dequeue();
+    dequeue();
+    dequeue();
+    for (int i = 0; i < 4; i++)
+    {
+        cout << Queue[i] << " ";
+    }
 }
