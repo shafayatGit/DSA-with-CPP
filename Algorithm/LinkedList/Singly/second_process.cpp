@@ -23,7 +23,7 @@ void Insert(int data)
         first = createNode(data);
         last = first;
     }
-    // this always inserts last
+    // this always inserts last.
     else
     {
         Node *temp = createNode(data);
