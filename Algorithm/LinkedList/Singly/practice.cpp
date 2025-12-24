@@ -25,7 +25,7 @@ void create(int A[], int n)
 {
 
     struct Node *t, *last;
-    first = (struct Node *)malloc(sizeof(struct Node)); // Or first = new Node;-> creating a new node
+    first = (struct Node *)malloc(sizeof(struct Node)); // Or first = new Node;-> creating a new node.
     first->data = A[0];
     first->next = NULL;
     last = first;
