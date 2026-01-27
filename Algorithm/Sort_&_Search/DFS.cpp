@@ -1,15 +1,17 @@
 #include <iostream>
 using namespace std;
 
-void DFS(int G[8][8], int start, int n)
+int visited[7] = {0}; // this visited array must be outside of the function so that it cant call more than once
+void DFS(int G[7][7], int start, int n)
 {
-     int visited[8] = {0};
+    int j;
     if (visited[start] == 0)
     {
+
         cout << start << " ";
         visited[start] = 1;
 
-        for (int j = 0; j < n; j++)
+        for (j = 0; j < n; j++)
         {
 
             if (G[start][j] == 1 && visited[j] == 0)
@@ -22,8 +24,14 @@ void DFS(int G[8][8], int start, int n)
 
 int main()
 {
-    int G[8][8] = {
-        {0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 1, 1, 1, 0, 0, 0}, {0, 1, 0, 1, 0, 0, 0, 0}, {0, 1, 1, 0, 1, 1, 0, 0}, {0, 1, 0, 1, 0, 1, 0, 0}, {0, 0, 0, 1, 1, 0, 1, 1}, {0, 0, 0, 0, 0, 1, 0, 0}, {0, 0, 0, 0, 0, 1, 0, 0}};
+    int G[7][7] = {
+        {0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 1, 1, 1, 0, 0},
+        {0, 1, 0, 1, 0, 0, 0},
+        {0, 1, 1, 0, 1, 1, 0},
+        {0, 1, 0, 1, 0, 1, 0},
+        {0, 0, 0, 1, 1, 0, 1},
+        {0, 0, 0, 0, 0, 1, 0}};
 
-    DFS(G, 4, 8);
+    DFS(G, 4, 7);
 }
