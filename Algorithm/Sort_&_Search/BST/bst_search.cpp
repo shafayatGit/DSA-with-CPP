@@ -126,8 +126,8 @@ struct Node *RSearch(Node *p, int key)
    ========================= */
 Node *Tree_Minimum(Node *x)
 {
-    while (x->left != NULL)
-        x = x->left;
+    while (x->lChild != NULL)
+        x = x->lChild;
     return x;
 }
 
@@ -136,47 +136,82 @@ Node *Tree_Minimum(Node *x)
    ========================= */
 Node *Tree_Maximum(Node *x)
 {
-    while (x->right != NULL)
-        x = x->right;
+    while (x->rChild != NULL)
+        x = x->rChild;
     return x;
 }
 
 /* =========================
    SUCCESSOR
    ========================= */
-Node *Tree_Successor(Node *x)
+Node *Tree_Successor(Node *p)
 {
-    if (x->right != NULL)
-        return Tree_Minimum(x->right);
-
-    Node *y = x->parent;
-    while (y != NULL && x == y->right)
+    while (p && p->lChild != NULL)
     {
-        x = y;
-        y = y->parent;
+        p = p->lChild;
     }
-    return y;
+    return p;
 }
 
 /* =========================
    PREDECESSOR
    ========================= */
-Node *Tree_Predecessor(Node *x)
+Node *Tree_Predecessor(Node *p)
 {
-    if (x->left != NULL)
-        return Tree_Maximum(x->left);
-
-    Node *y = x->parent;
-    while (y != NULL && x == y->left)
+    while (p && p->rChild != NULL)
     {
-        x = y;
-        y = y->parent;
+        p = p->rChild;
     }
-    return y;
+    return p;
+}
+
+int Height(Node *p)
+{
+    int x, y;
+    if (p == NULL)
+        return 0;
+    x = Height(p->lChild);
+    y = Height(p->rChild);
+    return x > y ? x + 1 : y + 1;
+}
+
+struct Node *Delete(Node *p, int key)
+{
+    struct Node *q;
+    if (p == NULL)
+        return NULL;
+    if (p->lChild == NULL && p->rChild == NULL)
+    {
+        if (p == root)
+            root = NULL;
+        free(p);
+        return NULL;
+    }
+    if (key < p->data)
+        p->lChild = Delete(p->lChild, key);
+    else if (key > p->data)
+        p->rChild = Delete(p->rChild, key);
+    else
+    {
+        if (Height(p->lChild) > Height(p->rChild))
+        {
+            q = Tree_Predecessor(p->lChild);
+            p->data = q->data;
+            p->lChild = Delete(p->lChild, q->data);
+        }
+        else
+        {
+            q = Tree_Successor(p->lChild);
+            p->data = q->data;
+            p->rChild = Delete(p->rChild, q->data);
+        }
+    }
+    return p;
 }
 int main()
 {
     struct Node *temp;
+    struct Node *pre;
 
     root = RInsert(root, 10);
     RInsert(root, 5);
@@ -184,12 +219,16 @@ int main()
     RInsert(root, 8);
     RInsert(root, 30);
 
+    Delete(root, 10);
+
     InOrder(root);
     cout << endl;
     PreOrder(root);
     cout << endl;
     PostOrder(root);
     cout << endl;
+    pre = Tree_Predecessor(root);
+    cout << "Predecessor:" << pre->data;
 
     temp = RSearch(root, 5);
     if (temp)
