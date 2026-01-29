@@ -74,6 +74,7 @@ struct Node *RInsert(Node *p, int data)
     }
     return p;
 }
+
 // -> InOrder
 void InOrder(struct Node *p)
 {
@@ -106,6 +107,7 @@ void PostOrder(struct Node *p)
         cout << p->data << " ";
     }
 }
+
 //-> Recursive Search
 struct Node *RSearch(Node *p, int key)
 {
@@ -120,7 +122,6 @@ struct Node *RSearch(Node *p, int key)
         return RSearch(p->rChild, key);
     }
 }
-
 /* =========================
    MINIMUM
    ========================= */
@@ -140,7 +141,6 @@ Node *Tree_Maximum(Node *x)
         x = x->rChild;
     return x;
 }
-
 /* =========================
    SUCCESSOR
    ========================= */
@@ -152,7 +152,6 @@ Node *Tree_Successor(Node *p)
     }
     return p;
 }
-
 /* =========================
    PREDECESSOR
    ========================= */
@@ -165,6 +164,9 @@ Node *Tree_Predecessor(Node *p)
     return p;
 }
 
+/* =========================
+   Height
+   ========================= */
 int Height(Node *p)
 {
     int x, y;
@@ -175,6 +177,9 @@ int Height(Node *p)
     return x > y ? x + 1 : y + 1;
 }
 
+/* =========================
+   Deletion
+   ========================= */
 struct Node *Delete(Node *p, int key)
 {
     struct Node *q;
