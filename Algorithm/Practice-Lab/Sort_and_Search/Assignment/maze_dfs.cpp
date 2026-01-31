@@ -1,36 +1,44 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-size of a connected empty region int exploreRegion(int row, int col,
-                                                   vector<vector<int>> &grid,
-                                                   vector<vector<bool>> &visited)
+/*
+    This function performs Depth First Search (DFS)
+    to calculate the size of a connected region of 0s
+*/
+int dfsRegion(int row, int col,
+              vector<vector<int>> &grid,
+              vector<vector<bool>> &visited)
 {
-    int totalRows = grid.size();
-    int totalCols = grid[0].size();
+    int rows = grid.size();
+    int cols = grid[0].size();
 
-    if (row < 0 || col < 0 || row >= totalRows || col >= totalCols)
+    // Boundary and validity check
+    if (row < 0 || col < 0 || row >= rows || col >= cols)
         return 0;
     if (visited[row][col] || grid[row][col] == 1)
         return 0;
 
+    // Mark cell as visited
     visited[row][col] = true;
-    int area = 1;
+    int regionSize = 1;
 
-    area += exploreRegion(row + 1, col, grid, visited);
-    area += exploreRegion(row - 1, col, grid, visited);
-    area += exploreRegion(row, col + 1, grid, visited);
-    area += exploreRegion(row, col - 1, grid, visited);
+    // Visit all four directions
+    regionSize += dfsRegion(row + 1, col, grid, visited);
+    regionSize += dfsRegion(row - 1, col, grid, visited);
+    regionSize += dfsRegion(row, col + 1, grid, visited);
+    regionSize += dfsRegion(row, col - 1, grid, visited);
 
-    return area;
+    return regionSize;
 }
 
 int main()
 {
     int rows, cols;
-    cin >> rows >> cols;
+    cin >> rows >> cols;   // Input grid size
 
     vector<vector<int>> grid(rows, vector<int>(cols));
 
+    // Read grid data (0 = empty, 1 = blocked)
     for (int i = 0; i < rows; i++)
     {
         for (int j = 0; j < cols; j++)
@@ -40,26 +48,27 @@ int main()
     }
 
     vector<vector<bool>> visited(rows, vector<bool>(cols, false));
-    int regionCount = 0;
-    vector<int> regionAreas;
+    int totalRegions = 0;
+    vector<int> regionSizes;
 
+    // Traverse grid to find connected regions
     for (int i = 0; i < rows; i++)
     {
         for (int j = 0; j < cols; j++)
         {
             if (grid[i][j] == 0 && !visited[i][j])
             {
-                regionCount++;
-                int currentSize = exploreRegion(i, j, grid, visited);
-                regionAreas.push_back(currentSize);
+                totalRegions++;
+                regionSizes.push_back(dfsRegion(i, j, grid, visited));
             }
         }
     }
 
-    cout << "Number of regions: " << regionCount << endl;
+    // Output results
+    cout << "Number of regions: " << totalRegions << endl;
     cout << "Region sizes: ";
 
-    for (int size : regionAreas)
+    for (int size : regionSizes)
     {
         cout << size << " ";
     }

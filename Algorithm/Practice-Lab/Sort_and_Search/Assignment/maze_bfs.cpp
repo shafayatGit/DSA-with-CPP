@@ -1,61 +1,78 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int shortestPath(vector<vector<int>> &grid, int rows, int cols)
+/*
+    This function uses Breadth First Search (BFS)
+    to find the minimum number of steps needed
+    to reach the bottom-right cell from (0, 0)
+*/
+int findShortestPath(vector<vector<int>> &grid, int rows, int cols)
 {
-    vector<vector<int>> steps(rows, vector<int>(cols, -1));
-    queue<pair<int, int>> bfsQueue;
+    // Stores distance of each cell from the start
+    vector<vector<int>> distance(rows, vector<int>(cols, -1));
+    queue<pair<int, int>> q;
 
-    bfsQueue.push({0, 0});
-    steps[0][0] = 0;
+    // Start from the top-left corner
+    q.push({0, 0});
+    distance[0][0] = 0;
 
-    int rowMove[4] = {-1, 1, 0, 0};
-    int colMove[4] = {0, 0, -1, 1};
+    // Direction arrays for up, down, left, right movement
+    int rowDir[4] = {-1, 1, 0, 0};
+    int colDir[4] = {0, 0, -1, 1};
 
-    while (!bfsQueue.empty())
+    while (!q.empty())
     {
-        auto [currentRow, currentCol] = bfsQueue.front();
-        bfsQueue.pop();
+        auto current = q.front();
+        q.pop();
 
-        if (currentRow == rows - 1 && currentCol == cols - 1)
-            return steps[currentRow][currentCol];
+        int r = current.first;
+        int c = current.second;
 
-        for (int d = 0; d < 4; d++)
+        // If destination is reached, return distance
+        if (r == rows - 1 && c == cols - 1)
+            return distance[r][c];
+
+        // Explore neighboring cells
+        for (int i = 0; i < 4; i++)
         {
-            int nextRow = currentRow + rowMove[d];
-            int nextCol = currentCol + colMove[d];
+            int newRow = r + rowDir[i];
+            int newCol = c + colDir[i];
 
-            if (nextRow >= 0 && nextRow < rows &&
-                nextCol >= 0 && nextCol < cols &&
-                steps[nextRow][nextCol] == -1 &&
-                grid[nextRow][nextCol] == 0)
+            // Check boundaries and validity
+            if (newRow >= 0 && newRow < rows &&
+                newCol >= 0 && newCol < cols &&
+                grid[newRow][newCol] == 0 &&
+                distance[newRow][newCol] == -1)
             {
-                steps[nextRow][nextCol] = steps[currentRow][currentCol] + 1;
-                bfsQueue.push({nextRow, nextCol});
+                distance[newRow][newCol] = distance[r][c] + 1;
+                q.push({newRow, newCol});
             }
         }
     }
 
+    // Return -1 if no path exists
     return -1;
 }
 
 int main()
 {
-    int totalRows, totalCols;
-    cin >> totalRows >> totalCols;
+    int rows, cols;
+    cin >> rows >> cols;   // Input grid size
 
-    vector<vector<int>> matrix(totalRows, vector<int>(totalCols));
+    vector<vector<int>> grid(rows, vector<int>(cols));
 
-    for (int i = 0; i < totalRows; i++)
+    // Input grid values
+    for (int i = 0; i < rows; i++)
     {
-        for (int j = 0; j < totalCols; j++)
+        for (int j = 0; j < cols; j++)
         {
-            cin >> matrix[i][j];
+            cin >> grid[i][j];
         }
     }
 
-    int answer = shortestPath(matrix, totalRows, totalCols);
-    cout << "Minimum steps: " << answer << endl;
+    int result = findShortestPath(grid, rows, cols);
+
+    cout << "Minimum steps: " << result << endl;
 
     return 0;
 }
