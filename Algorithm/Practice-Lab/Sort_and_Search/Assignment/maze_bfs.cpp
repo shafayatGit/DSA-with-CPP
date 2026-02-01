@@ -74,5 +74,4 @@ int main()
 
     cout << "Minimum steps: " << result << endl;
 
-    return 0;
 }
