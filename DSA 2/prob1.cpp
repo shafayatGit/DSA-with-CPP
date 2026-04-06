@@ -18,9 +18,16 @@ using namespace std;
 int main()
 {
     int n;
+    cout << "input the size:";
     cin >> n;
 
-    vector<int> v;       // dynamic array
-    vector<int> v(n);    // declaring size which is fixed array
-    vector<int> v(n, 5); // declaring size is n and every elems is 5
+    vector<int> daynamicV;        // dynamic array
+    vector<int> fixedV(n);        // declaring size which is fixed array
+    vector<int> v(n, 5);          // declaring size is n and every elems is 5
+    vector<int> V = {1, 2, 3, 4}; // declaring like an array
+    
+    for (int i = 0; i < n; i++)
+    {
+        cout << v[i] << " ";
+    }
 }
