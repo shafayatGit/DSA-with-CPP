@@ -1,6 +1,7 @@
 // using vector, sort an array in descending order
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 /*
@@ -25,9 +26,20 @@ int main()
     vector<int> fixedV(n);        // declaring size which is fixed array
     vector<int> v(n, 5);          // declaring size is n and every elems is 5
     vector<int> V = {1, 2, 3, 4}; // declaring like an array
-    
+
     for (int i = 0; i < n; i++)
     {
-        cout << v[i] << " ";
+        int temp;
+        cout << "Input the " << i + 1 << "th element:";
+        cin >> temp;
+
+        daynamicV.push_back(temp); // pushing into the vector
+    }
+
+    sort(daynamicV.begin(), daynamicV.end()); //.begin() returns pointer for the first elem, .end() return pointer for the  last elem
+
+    for (int i = 0; i < n; i++)
+    {
+        cout << daynamicV[i] << " ";
     }
 }
