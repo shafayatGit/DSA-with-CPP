@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <iterator>
 using namespace std;
 
 /*
@@ -22,7 +23,7 @@ int main()
     cout << "input the size:";
     cin >> n;
 
-    vector<int> daynamicV;        // dynamic array
+    vector<int> dynamicV;         // dynamic array
     vector<int> fixedV(n);        // declaring size which is fixed array
     vector<int> v(n, 5);          // declaring size is n and every elems is 5
     vector<int> V = {1, 2, 3, 4}; // declaring like an array
@@ -33,13 +34,20 @@ int main()
         cout << "Input the " << i + 1 << "th element:";
         cin >> temp;
 
-        daynamicV.push_back(temp); // pushing into the vector
+        dynamicV.push_back(temp); // pushing into the vector
     }
 
-    sort(daynamicV.begin(), daynamicV.end()); //.begin() returns pointer for the first elem, .end() return pointer for the  last elem
+    sort(dynamicV.begin(), dynamicV.end());    //.begin() returns pointer for the first elem, .end() return pointer for the  last elem
+    reverse(dynamicV.begin(), dynamicV.end()); // descending order e sort korbe
 
-    for (int i = 0; i < n; i++)
+    // Printing using Itereatior
+    for (vector<int>::iterator it = dynamicV.begin(); it < dynamicV.end(); it++)
     {
-        cout << daynamicV[i] << " ";
-    }
+        cout << *it << " ";
+    };
+
+    // for (int i = 0; i < n; i++)
+    // {
+    //     cout << dynamicV[i] << " ";
+    // }
 }
