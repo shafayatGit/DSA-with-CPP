@@ -37,7 +37,7 @@ int main()
         dynamicV.push_back(temp); // pushing into the vector
     }
 
-    sort(dynamicV.begin(), dynamicV.end());    //.begin() returns pointer for the first elem, .end() return pointer for the  last elem
+    sort(dynamicV.begin(), dynamicV.end());    //.begin() returns pointer for the first elem, .end() return pointer for the  last elem.
     reverse(dynamicV.begin(), dynamicV.end()); // descending order e sort korbe
 
     // Printing using Itereatior
