@@ -1,4 +1,4 @@
-// using vector, sort an array in descending order
+// using vector, sort an array in descending order.
 #include <iostream>
 #include <vector>
 #include <algorithm>
