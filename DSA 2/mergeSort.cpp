@@ -11,6 +11,25 @@ void merge(vector<int> &v, int start, int mid, int end)
     // right array: mid+1 ->end
     int i = start;
     int j = mid + 1;
+    vector<int> sorted;
+    while (i <= start && j <= mid + 1)
+    {
+        if (v[i] < v[j])
+        {
+            sorted.push_back(v[i]);
+            i++;
+        }
+        else
+        {
+            sorted.push_back(v[j]);
+            j++;
+        }
+    }
+    if(i>mid){
+        while(j<mid){
+            sorted.push_back(v[j]);
+        }
+    }
 }
 
 void mergeSort(vector<int> &v, int start, int end)
