@@ -3,7 +3,7 @@
 #include <vector>
 using namespace std;
 
-// Merge Sort
+// Merge Sort.
 
 void merge(vector<int> &v, int start, int mid, int end)
 {
