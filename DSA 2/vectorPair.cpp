@@ -7,7 +7,7 @@ using namespace std;
 bool compareFunc(pair<int, int> &a, pair<int, int> &b) // using this for time complexity so that we are taking address
 {
     // a comes before b
-    // if we dont want to swap, return true
+    // if we dont want to swap, return true.
     // else return false
     if (a.second > b.second)
     {
