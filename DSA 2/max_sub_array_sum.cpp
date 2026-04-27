@@ -1,56 +1,50 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
+#include <climits>
 using namespace std;
 
-int cross_sum(int arr[], int si, int mid, int ei)
+int maxCrossingSum(const vector<int> &v, int l, int m, int r)
 {
+    int sum = 0, leftSum = INT_MIN;
 
-    int left_max_sum = INT_MIN;
-    int right_max_sum = INT_MIN;
-
-    int sum = 0;
-    for (int i = mid; i >= si; i--)
+    for (int i = m; i >= l; i--)
     {
-        sum += arr[i];
-
-        if (left_max_sum < sum)
-        {
-            left_max_sum = sum;
-        }
+        sum += v[i];
+        leftSum = max(leftSum, sum);
     }
+
     sum = 0;
-    for (int i = mid + 1; i <= ei; i++)
-    {
-        sum += arr[i];
+    int rightSum = INT_MIN;
 
-        if (right_max_sum < sum)
-        {
-            right_max_sum = sum;
-        }
+    for (int i = m + 1; i <= r; i++)
+    {
+        sum += v[i];
+        rightSum = max(rightSum, sum);
     }
 
-    return left_max_sum + right_max_sum;
+    return leftSum + rightSum;
 }
 
-int maxSubArraySum(int arr[], int si, int ei)
+int maxSubarray(const vector<int> &v, int l, int r)
 {
-    if (si == ei)
-    {
-        return arr[si];
-    }
+    if (l == r)
+        return v[l];
 
-    int mid = (si + ei) / 2;
-    int lss = maxSubArraySum(arr, si, mid);
-    int rss = maxSubArraySum(arr, mid + 1, ei);
-    int css = cross_sum(arr, si, mid, ei);
+    int m = (l + r) / 2;
 
-    return max(max(lss, rss), css);
+    return max({maxSubarray(v, l, m),
+                maxSubarray(v, m + 1, r),
+                maxCrossingSum(v, l, m, r)});
 }
 
 int main()
 {
-    int arr[] = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
-    int n = sizeof(arr) / sizeof(int);
-    cout << maxSubArraySum(arr, 0, n - 1) << endl; // 6
+    int n;
+    cin >> n;
+
+    vector<int> v(n);
+    for (int i = 0; i < n; i++)
+        cin >> v[i];
+
+    cout << maxSubarray(v, 0, n - 1) << endl;
 }
