@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <climits>
+#include <climits> // for INT_MIN. that means we can use the minimum value of int to initialize leftSum and rightSum.
 using namespace std;
 
 int maxCrossingSum(const vector<int> &v, int l, int m, int r)
