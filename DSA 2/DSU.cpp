@@ -1,9 +1,9 @@
 #include <iostream>
-using namespace std;
 #include <vector>
 #include <algorithm>
+using namespace std;
 
-// for DSU(Disjoint Set Union), we need parent and rank array
+// for DSU(Disjoint Set Union), we need parent and rank array.
 vector<int> parent(1000); // to track the parent of a node
 vector<int> _rank(1000);  // to decide who will become parent during union
 
@@ -50,11 +50,11 @@ struct edge
 
 // n is number of nodes, m is number of edges
 int n, m;
+
 // edge list to sort
 vector<edge> edges;
 
 // custom sort
-
 bool customSort(struct edge &a, struct edge &b)
 {
     // do not want swap
