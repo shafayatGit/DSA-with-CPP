@@ -32,9 +32,14 @@ bool _union(int a, int b)
         {
             parent[root_b] = root_a;
         }
-        else
+        else if (_rank[root_a] < _rank[root_b])
         {
             parent[root_a] = root_b;
+        }
+        else
+        {
+            parent[root_b] = root_a;
+            _rank[root_a]++;
         }
         return true;
     }
