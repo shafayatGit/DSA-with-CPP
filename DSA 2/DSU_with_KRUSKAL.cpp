@@ -71,14 +71,17 @@ bool customSort(struct edge &a, struct edge &b)
 
 int main()
 {
-    cin >> n; // input the node amount
-    cin >> m; // input the edge amount
+    cout << "Input node amount: " && cin >> n; // input the node amount
+    cout << "Input edge amount: " && cin >> m; // input the edge amount
 
     // input the edges
     for (int i = 0; i < m; i++)
     {
         struct edge e;
-        cin >> e.u >> e.v >> e.weight;
+        cout << "Input start node: " && cin >> e.u;
+        cout << "Input end node: " && cin >> e.v;
+        cout << "Input their weight: " && cin >> e.weight;
+        cout << endl;
         edges.push_back(e);
     }
     // initialize the DSU
