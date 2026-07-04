@@ -19,7 +19,7 @@ int *fun(int n)
     {
         p[i] = i*2;
     }
-    return p; // returning the pointer
+    return p; // returning the pointer.
 }
 
 int main()
